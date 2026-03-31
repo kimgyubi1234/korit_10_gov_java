@@ -1,0 +1,19 @@
+package study.ch08;
+
+public class OBJ03 {
+    public static void main(String[] args) {
+        class Student {
+            String name;
+            int age;
+
+            Student(String name, int age) {
+                System.out.println("학생 생성");
+                this.name = name;
+                this.age = age;
+            } // 변수의 우선 순위는 지역이 높다.
+        }
+
+        Student s1 = new Student("김준일", 33);
+        Student s2 = new Student("김준이", 34);
+    }
+}
