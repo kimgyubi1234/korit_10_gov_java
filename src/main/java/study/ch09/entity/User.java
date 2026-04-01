@@ -22,9 +22,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setName(String name) {
-        this.name = substring(0, name.length() - 1);
+    public String getName() {
+        return name.substring(0, name.length() - 1);
         // 김 준 일 님 - 4글자
         // 0  1  2  3
     }
