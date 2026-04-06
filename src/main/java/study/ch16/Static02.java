@@ -1,6 +1,4 @@
-package study.ch16;
-
-// 왜 배열에 안 들어가는지
+package study.ch16; // 결합도 낮고 응집도가 높다
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +15,12 @@ class User {
     private String password;
 }
 
-class UserRepository {
+class UserRepository { // 배열에 의존하고 있다 >> 의존성
     private final User[] users;
     private Long lastCreatedId = 0l;
 
-    public UserRepository () {
-        users = new User[100];
+    public UserRepository (User[] users) { // 의존성 주입 = DI
+        this.users = users;
     }
 
     public boolean addUser(User user) {
@@ -63,9 +61,13 @@ class UserRepository {
 }
 
 class UserService {
+    private UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public int signup(String username, String password) {
         // 성공: 200, 실패: 400(중복 아이디), 500(공간부족)
-        UserRepository userRepository = new UserRepository();
         User foundUser = userRepository.findByUsername(username);
         if (foundUser != null) {
             return 400;
@@ -81,9 +83,14 @@ class UserService {
 
 }
 
-class UserController {
-    public void postMapping(String username, String password) {
-        UserService userService = new UserService();
+class UserController { // 유저 컨틀로러가 생성됐고 생략됨
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void postMapping(String username, String password) { // 인스턴스 메소드 >> 생성되야지만 사용할 수 있음
        int status = userService.signup(username, password);
        switch (status) {
            case 200:
@@ -115,8 +122,13 @@ public class Static02 {
         System.out.println(Arrays.toString(usernames));
         System.out.println(Arrays.toString(passwords));
 
-        UserController userController = new UserController();
-        for (int i = 0; i < 500; i++) {
+        User[] users = new User[100];
+        UserRepository userRepository = new UserRepository(users);
+        UserService userService= new UserService(userRepository);
+
+        UserController userController = new UserController(userService);
+        // 자료형의 유저 컨트롤러라고 하는 변수의 유저컨트롤러 생성
+        for (int i = 0; i < 500; i++) { //500번 호출한다
             userController.postMapping(usernames[i], passwords[i]);
         }
     }
