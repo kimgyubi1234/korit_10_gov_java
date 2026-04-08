@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class Oder {
+public class Order {
     private int orderNumber;
     private List<OrderDetail> orderDetails;
     private LocalDateTime orderDateTime;
