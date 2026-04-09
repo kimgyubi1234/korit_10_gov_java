@@ -6,6 +6,7 @@ import java.io.IOException;
 public class Ex07 {
     static void readFile(String path) throws IOException {
         FileReader fileReader = new FileReader(path);
+        fileReader.close();
     }
 
     public static void main(String[] args) {
@@ -18,4 +19,4 @@ public class Ex07 {
 }
 
 // 여기서 close()를 쓰던데 언제쓰지?
-// 객체를 소멸 시킨다던데
+// 소실을 막기 위해서
