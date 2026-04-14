@@ -1,0 +1,69 @@
+//package ex2.controller;
+//
+//import ex2.dto.ResponseDto;
+//import ex2.entity.Account;
+//import ex2.repository.AccountRepository;
+//import ex2.repository.AccountRepositoryImpl;
+//import ex2.router.RouterPath;
+//import ex2.router.Routes;
+//import ex2.util.Input;
+//
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//public class Controller {
+//
+//    public static ResponseDto<Map<String, Object>> homeController(String selectedMenu) {
+//        ResponseDto<Map<String, Object>> responseDto = new ResponseDto<>(200, new HashMap<>());
+//        try {
+//            if ("1".equals(selectedMenu)) {
+//                RouterPath.current = Routes.ACCOUNT.name();
+//            }else if ("2".equals(selectedMenu)){
+//
+//            }else if ("3".equals(selectedMenu)){
+//
+//            }else if ("4".equals(selectedMenu)){
+//
+//            }else if ("5".equals(selectedMenu)){
+//
+//            }else if ("6".equals(selectedMenu)){
+//
+//            }else if ("q".equals(selectedMenu)){
+//                responseDto.setStatus(100);
+//            }else {
+//                throw new RuntimeException("해당 입력 값은 유효하지 않습니다. 다시 입력하세요.");
+//            }
+//        } catch (RuntimeException e) {
+//            Map<String, Object> errorMap = Map.of(
+//                    "message", e.getMessage()
+//            );
+//            responseDto = new ResponseDto<>(400, errorMap);
+//        }
+//        return responseDto;
+//    }
+//
+//    public static ResponseDto<?> accountConreoller(String selectedMenu) {
+//        ResponseDto<?> responseDto = new ResponseDto<>(200, null);
+//        if ("1".equals(selectedMenu)) {
+//            System.out.println();
+//            System.out.println();
+//            String accountNo = Input.nextLine();
+//            System.out.println();
+//            String owner = Input.nextLine();
+//            System.out.println();
+//            int balavcd = Integer.parseInt(Input.nextLine());
+//            Account newAccount = new Account(0, accountNo, owner, balance);
+//            Account savedAccount = AccountRepositoryImpl.ACCOUNT_REPOSITORY.save(newAccount);
+//            System.out.println();
+//            System.out.println();
+//        }else if ("2".equals(selectedMenu)) {
+//
+//        }else if (("b".equals(selectedMenu)) {
+//            responseDto.setStatus(100);
+//        } else {
+//
+//        }
+//
+//        return responseDto;
+//    }
+//}
