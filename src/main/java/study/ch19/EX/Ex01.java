@@ -1,14 +1,28 @@
-package study.ch19.EX;
-
-//ArrayList를 사용하여 5명의 학생 점수를 저장하고, 평균과 최고 점수를 구하시오.
-// 점수: 85, 92, 78, 96, 88
-// 출력:
-// 전체 점수: [85, 92, 78, 96, 88]
-// 평균: 87.8
-// 최고 점수: 96
+package study.ch19.ex;
 
 import java.util.ArrayList;
+import java.util.List;
+
+class Student {
+    String name; int score;
+
+    Student(String name, int score) {
+        this.name = name; this.score = score;
+    }
+    @Override
+    public String toString() {
+        return "Student{name='" + name + "', score=" + score + "}";}
+}
+
 
 public class Ex01 {
-
+    public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("김자바", 90));
+        list.add(new Student("이파이", 85));
+        list.add(new Student("박씨플", 78));
+        list.add(new Student("최고랭", 92));
+        list.add(new Student("정루비", 88));
+        for (Student s : list) System.out.println(s);
+    }
 }
